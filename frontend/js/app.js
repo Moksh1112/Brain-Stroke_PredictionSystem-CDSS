@@ -6,7 +6,7 @@ const state = {
 };
 
 // API Configuration
-const API_URL = "http://localhost:5000";
+const API_URL = "https://brain-stroke-predictionsystem-cdss.onrender.com";
 
 // DOM Elements
 const elements = {
