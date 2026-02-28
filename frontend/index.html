@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Clinical Decision Support System for brain stroke risk prediction using Machine Learning. Secure, DPDP compliant, and designed for healthcare professionals.">
+    <title>AI-Driven Brain Stroke Prediction CDSS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container header-container">
+            <button class="logo-btn" aria-label="Go to top" onclick="scrollToSection('hero')">
+                <div class="logo-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a8 8 0 0 0-8 8c0 3.5 2.5 6 5 7.5L12 22l2.5-4.5c2.5-1.5 5-4 5-7.5a8 8 0 0 0-8-8z"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                </div>
+                <span class="logo-text">
+                    <span class="text-primary">Neuro</span><span class="text-foreground">Stroke</span><span class="text-xs font-normal text-muted-foreground ml-1">CDSS</span>
+                </span>
+            </button>
+
+            <nav class="nav-desktop" aria-label="Main navigation">
+                <button class="nav-link" onclick="scrollToSection('assessment')">Risk Assessment</button>
+                <button class="nav-link" onclick="scrollToSection('security')">Security</button>
+                <button class="nav-link" onclick="scrollToSection('model')">ML Model</button>
+                <button class="btn btn-primary nav-cta" onclick="scrollToSection('assessment')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                    </svg>
+                    Start Assessment
+                </button>
+            </nav>
+
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle menu" aria-expanded="false">
+                <svg class="menu-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>
+                </svg>
+                <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                    <line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <nav class="nav-mobile" id="mobileNav" aria-label="Mobile navigation">
+            <button class="nav-link-mobile" onclick="scrollToSection('assessment')">Risk Assessment</button>
+            <button class="nav-link-mobile" onclick="scrollToSection('security')">Security</button>
+            <button class="nav-link-mobile" onclick="scrollToSection('model')">ML Model</button>
+            <button class="btn btn-primary nav-cta-mobile" onclick="scrollToSection('assessment')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                </svg>
+                Start Assessment
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <!-- Animated neural network background -->
+            <div class="hero-bg">
+                <div class="blur-circle blur-circle-1"></div>
+                <div class="blur-circle blur-circle-2"></div>
+                <div class="blur-circle blur-circle-3 animate-brain-pulse"></div>
+                
+                <!-- Floating neural nodes -->
+                <div class="neural-node" style="left: 20%; top: 30%; animation-delay: 0s;"></div>
+                <div class="neural-node" style="left: 80%; top: 20%; animation-delay: 0.5s;"></div>
+                <div class="neural-node" style="left: 60%; top: 70%; animation-delay: 1s;"></div>
+                <div class="neural-node" style="left: 30%; top: 80%; animation-delay: 1.5s;"></div>
+            </div>
+
+            <div class="container hero-content">
+                <div class="hero-text-center">
+                    <span class="badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                        </svg>
+                        Neural Network-Powered
+                    </span>
+
+                    <h1 class="hero-title">
+                        <span class="gradient-text">AI Brain Stroke</span><br>
+                        <span class="text-foreground">Prediction System</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Advanced <span class="text-primary font-semibold">Deep Learning</span> Clinical Decision Support System 
+                        for early stroke risk detection. Powered by neural network algorithms with 
+                        real-time analysis and explainable AI recommendations.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary btn-lg" onclick="scrollToSection('assessment')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2a8 8 0 0 0-8 8c0 3.5 2.5 6 5 7.5L12 22l2.5-4.5c2.5-1.5 5-4 5-7.5a8 8 0 0 0-8-8z"/>
+                                <path d="M9 12l2 2 4-4"/>
+                            </svg>
+                            Start Neural Assessment
+                        </button>
+                        <button class="btn btn-outline btn-lg" onclick="scrollToSection('model')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" x2="9" y1="1" y2="4"/><line x1="15" x2="15" y1="1" y2="4"/><line x1="9" x2="9" y1="20" y2="23"/><line x1="15" x2="15" y1="20" y2="23"/><line x1="20" x2="9" y1="9" y2="14"/><line x1="4" x2="15" y1="9" y2="14"/><line x1="20" x2="9" y1="15" y2="20"/><line x1="4" x2="15" y1="15" y2="20"/>
+                            </svg>
+                            View Model Architecture
+                        </button>
+                    </div>
+
+                    <div class="hero-features">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                                </svg>
+                            </div>
+                            <p class="feature-title">Neural Network</p>
+                            <p class="feature-description">Deep learning model trained on medical data</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+                                </svg>
+                            </div>
+                            <p class="feature-title">Explainable AI</p>
+                            <p class="feature-description">Transparent predictions with neural insights</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                </svg>
+                            </div>
+                            <p class="feature-title">Secure & Private</p>
+                            <p class="feature-description">DPDP compliant with encrypted processing</p>
+                        </div>
+                    </div>
+
+                    <button class="scroll-hint" onclick="scrollToSection('assessment')" aria-label="Scroll to risk assessment form">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 5v14M19 12l-7 7-7-7"/>
+                        </svg>
+                        Begin Assessment
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prediction Form Section -->
+        <section id="assessment" class="assessment-section">
+            <div class="section-bg">
+                <div class="blur-circle blur-circle-4"></div>
+                <div class="blur-circle blur-circle-5"></div>
+            </div>
+
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a8 8 0 0 0-8 8c0 3.5 2.5 6 5 7.5L12 22l2.5-4.5c2.5-1.5 5-4 5-7.5a8 8 0 0 0-8-8z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                        Neural Risk Assessment
+                    </div>
+                    <h2 class="section-title">
+                        <span class="gradient-text">Brain Stroke</span> Prediction
+                    </h2>
+                    <p class="section-description">
+                        Enter clinical parameters for AI-powered stroke risk analysis using our neural network model.
+                    </p>
+                </div>
+
+                <div class="assessment-grid">
+                    <!-- Form Card -->
+                    <div class="card form-card">
+                        <div class="card-header">
+                            <div class="card-header-content">
+                                <div class="card-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="card-title">Patient Parameters</h3>
+                                    <p class="card-description">Neural network analyzes each factor for risk assessment</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <form id="predictionForm" onsubmit="handleSubmit(event)">
+                                <div class="form-grid">
+                                    <!-- Age -->
+                                    <div class="form-group">
+                                        <label for="age" class="form-label">Age (years)</label>
+                                        <input 
+                                            type="number" 
+                                            id="age" 
+                                            class="form-input" 
+                                            placeholder="e.g. 55"
+                                            min="1"
+                                            max="120"
+                                            aria-invalid="false"
+                                        >
+                                        <p class="form-error" id="age-error"></p>
+                                    </div>
+
+                                    <!-- Gender -->
+                                    <div class="form-group">
+                                        <label for="gender" class="form-label">Gender</label>
+                                        <select id="gender" class="form-select">
+                                            <option value="">Select gender</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                        <p class="form-error" id="gender-error"></p>
+                                    </div>
+
+                                    <!-- Hypertension -->
+                                    <div class="form-group">
+                                        <label for="hypertension" class="form-label">Hypertension</label>
+                                        <select id="hypertension" class="form-select">
+                                            <option value="">Select</option>
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                        </select>
+                                        <p class="form-error" id="hypertension-error"></p>
+                                    </div>
+
+                                    <!-- Heart Disease -->
+                                    <div class="form-group">
+                                        <label for="heartDisease" class="form-label">Heart Disease</label>
+                                        <select id="heartDisease" class="form-select">
+                                            <option value="">Select</option>
+                                            <option value="yes">Yes</option>
+                                            <option value="no">No</option>
+                                        </select>
+                                        <p class="form-error" id="heartDisease-error"></p>
+                                    </div>
+
+                                    <!-- Glucose Level -->
+                                    <div class="form-group">
+                                        <label for="glucose" class="form-label">Avg. Glucose (mg/dL)</label>
+                                        <input 
+                                            type="number" 
+                                            id="glucose" 
+                                            class="form-input" 
+                                            placeholder="e.g. 120"
+                                            min="30"
+                                            max="500"
+                                        >
+                                        <p class="form-error" id="glucose-error"></p>
+                                    </div>
+
+                                    <!-- BMI -->
+                                    <div class="form-group">
+                                        <label for="bmi" class="form-label">BMI</label>
+                                        <input 
+                                            type="number" 
+                                            id="bmi" 
+                                            class="form-input" 
+                                            placeholder="e.g. 28.5"
+                                            step="0.1"
+                                            min="10"
+                                            max="70"
+                                        >
+                                        <p class="form-error" id="bmi-error"></p>
+                                    </div>
+
+                                    <!-- Smoking Status -->
+                                    <div class="form-group form-group-full">
+                                        <label for="smoking" class="form-label">Smoking Status</label>
+                                        <select id="smoking" class="form-select">
+                                            <option value="">Select smoking status</option>
+                                            <option value="never_smoked">Never Smoked</option>
+                                            <option value="formerly_smoked">Formerly Smoked</option>
+                                            <option value="smokes">Currently Smokes</option>
+                                            <option value="unknown">Unknown</option>
+                                        </select>
+                                        <p class="form-error" id="smoking-error"></p>
+                                    </div>
+
+                                    <!-- Actions -->
+                                    <div class="form-actions form-group-full">
+                                        <button type="submit" class="btn btn-primary btn-flex" id="submitBtn" disabled>
+                                            <span class="btn-content">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                                                </svg>
+                                                Run Neural Analysis
+                                            </span>
+                                            <span class="btn-loading" style="display: none;">
+                                                <svg class="spinner" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <circle cx="12" cy="12" r="10" stroke-dasharray="60" stroke-dashoffset="20"/>
+                                                </svg>
+                                                Analyzing...
+                                            </span>
+                                        </button>
+                                        <button type="button" class="btn btn-outline" onclick="handleReset()">
+                                            Reset
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Result Card -->
+                    <div class="result-container" id="resultContainer">
+                        <div class="card result-placeholder" id="resultPlaceholder">
+                            <div class="result-placeholder-content">
+                                <div class="result-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2a8 8 0 0 0-8 8c0 3.5 2.5 6 5 7.5L12 22l2.5-4.5c2.5-1.5 5-4 5-7.5a8 8 0 0 0-8-8z"/>
+                                        <path d="M9 12l2 2 4-4"/>
+                                    </svg>
+                                </div>
+                                <p class="result-title">Neural Network Ready</p>
+                                <p class="result-description">Fill patient parameters and submit for AI-powered stroke risk prediction</p>
+                                <div class="result-status">
+                                    <span class="status-dot"></span>
+                                    <span>Neural model active</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card result-card" id="resultCard" style="display: none;">
+                            <div class="card-header">
+                                <h3 class="card-title flex-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 2a8 8 0 0 0-8 8c0 3.5 2.5 6 5 7.5L12 22l2.5-4.5c2.5-1.5 5-4 5-7.5a8 8 0 0 0-8-8z"/>
+                                        <path d="M9 12l2 2 4-4"/>
+                                    </svg>
+                                    Neural Analysis Result
+                                </h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="result-risk-display" id="riskDisplay">
+                                    <!-- Risk level display will be inserted here -->
+                                </div>
+
+                                <div class="result-confidence" id="confidenceDisplay" style="display: none;">
+                                    <div class="confidence-header">
+                                        <span class="confidence-label">Neural Confidence</span>
+                                        <span class="confidence-value" id="confidenceValue">0%</span>
+                                    </div>
+                                    <div class="confidence-bar">
+                                        <div class="confidence-fill" id="confidenceFill"></div>
+                                    </div>
+                                </div>
+
+                                <div class="result-recommendation">
+                                    <p class="recommendation-label">Neural Recommendation</p>
+                                    <p class="recommendation-text" id="recommendationText"></p>
+                                </div>
+
+                                <div class="result-disclaimer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="16" y2="12"/><line x1="12" x2="12.01" y1="8" y2="8"/>
+                                    </svg>
+                                    <p>This AI prediction is a decision support tool only. Final clinical decisions must always be made by a qualified healthcare professional.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Section -->
+        <section id="security" class="security-section">
+            <div class="section-bg">
+                <div class="blur-circle blur-circle-6"></div>
+                <div class="blur-circle blur-circle-7"></div>
+            </div>
+
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                        Security & Compliance
+                    </span>
+                    <h2 class="section-title">
+                        <span class="gradient-text">DPDP Act</span> Compliance
+                    </h2>
+                    <p class="section-description">
+                        Built from the ground up with the Digital Personal Data Protection Act in mind, 
+                        ensuring the highest standards of data privacy and security for patient information.
+                    </p>
+                </div>
+
+                <div class="security-grid">
+                    <div class="card security-card">
+                        <div class="security-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </div>
+                        <h3 class="security-title">Data Minimization</h3>
+                        <p class="security-description">Only essential clinical parameters are collected. No unnecessary personal data is stored or processed.</p>
+                    </div>
+
+                    <div class="card security-card">
+                        <div class="security-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2a2 2 2v16 0 0 0 2a2 2 2h12 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="9 15 12 18 15 15"/><line x1="12" x2="12" y1="12" y2="18"/>
+                            </svg>
+                        </div>
+                        <h3 class="security-title">Informed Consent</h3>
+                        <p class="security-description">Patients are fully informed about data usage. Explicit consent is obtained before any processing begins.</p>
+                    </div>
+
+                    <div class="card security-card">
+                        <div class="security-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                            </svg>
+                        </div>
+                        <h3 class="security-title">AES-256 Encryption</h3>
+                        <p class="security-description">All patient data is encrypted at rest and in transit using military-grade AES-256 encryption standards.</p>
+                    </div>
+
+                    <div class="card security-card">
+                        <div class="security-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+                            </svg>
+                        </div>
+                        <h3 class="security-title">Role-Based Access Control</h3>
+                        <p class="security-description">Strict RBAC ensures only authorized healthcare professionals can access patient data and predictions.</p>
+                    </div>
+
+                    <div class="card security-card">
+                        <div class="security-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M8 11h.01"/><path d="M12 11h.01"/><path d="M16 11h.01"/>
+                            </svg>
+                        </div>
+                        <h3 class="security-title">Multi-Factor Authentication</h3>
+                        <p class="security-description">MFA adds an extra layer of security, preventing unauthorized access even if credentials are compromised.</p>
+                    </div>
+
+                    <div class="card security-card">
+                        <div class="security-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            </svg>
+                        </div>
+                        <h3 class="security-title">Firewall Protection</h3>
+                        <p class="security-description">Enterprise-grade firewalls and intrusion detection systems protect against external threats and hacking attempts.</p>
+                    </div>
+                </div>
+
+                <!-- Compliance Badge -->
+                <div class="compliance-badge">
+                    <div class="compliance-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <div class="compliance-text">
+                        <p class="compliance-title">Fully DPDP Compliant</p>
+                        <p class="compliance-description">Meets all requirements of the Digital Personal Data Protection Act</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Model Section -->
+        <section id="model" class="model-section">
+            <div class="section-bg">
+                <div class="blur-circle blur-circle-8"></div>
+                <div class="blur-circle blur-circle-9"></div>
+            </div>
+
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" x2="9" y1="1" y2="4"/><line x1="15" x2="15" y1="1" y2="4"/><line x1="9" x2="9" y1="20" y2="23"/><line x1="15" x2="15" y1="20" y2="23"/><line x1="20" x2="9" y1="9" y2="14"/><line x1="4" x2="15" y1="9" y2="14"/><line x1="20" x2="9" y1="15" y2="20"/><line x1="4" x2="15" y1="15" y2="20"/>
+                        </svg>
+                        Deep Learning Model
+                    </span>
+                    <h2 class="section-title">
+                        Neural Network <span class="gradient-text">Architecture</span>
+                    </h2>
+                    <p class="section-description">
+                        Our AI-powered prediction engine uses a neural network trained on thousands 
+                        of patient records to deliver accurate, interpretable stroke risk assessments.
+                    </p>
+                </div>
+
+                <!-- Neural Network Visualization -->
+                <div class="card model-visualization">
+                    <h3 class="model-title">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a8 8 0 0 0-8 8c0 3.5 2.5 6 5 7.5L12 22l2.5-4.5c2.5-1.5 5-4 5-7.5a8 8 0 0 0-8-8z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                        Neural Network Structure
+                    </h3>
+                    
+                    <div class="neural-network-svg">
+                        <svg viewBox="0 0 400 200" class="nn-svg">
+                            <!-- Connections - Input Layer to Hidden Layer -->
+                            <g class="connections">
+                                <line x1="40" y1="30" x2="180" y2="25" class="connection-line"/>
+                                <line x1="40" y1="30" x2="180" y2="70" class="connection-line"/>
+                                <line x1="40" y1="30" x2="180" y2="115" class="connection-line"/>
+                                <line x1="40" y1="30" x2="180" y2="160" class="connection-line"/>
+                                
+                                <line x1="40" y1="65" x2="180" y2="25" class="connection-line"/>
+                                <line x1="40" y1="65" x2="180" y2="70" class="connection-line"/>
+                                <line x1="40" y1="65" x2="180" y2="115" class="connection-line"/>
+                                <line x1="40" y1="65" x2="180" y2="160" class="connection-line"/>
+                                
+                                <line x1="40" y1="100" x2="180" y2="25" class="connection-line"/>
+                                <line x1="40" y1="100" x2="180" y2="70" class="connection-line"/>
+                                <line x1="40" y1="100" x2="180" y2="115" class="connection-line"/>
+                                <line x1="40" y1="100" x2="180" y2="160" class="connection-line"/>
+                                
+                                <line x1="40" y1="135" x2="180" y2="25" class="connection-line"/>
+                                <line x1="40" y1="135" x2="180" y2="70" class="connection-line"/>
+                                <line x1="40" y1="135" x2="180" y2="115" class="connection-line"/>
+                                <line x1="40" y1="135" x2="180" y2="160" class="connection-line"/>
+                                
+                                <line x1="40" y1="170" x2="180" y2="25" class="connection-line"/>
+                                <line x1="40" y1="170" x2="180" y2="70" class="connection-line"/>
+                                <line x1="40" y1="170" x2="180" y2="115" class="connection-line"/>
+                                <line x1="40" y1="170" x2="180" y2="160" class="connection-line"/>
+                                
+                                <line x1="40" y1="205" x2="180" y2="25" class="connection-line"/>
+                                <line x1="40" y1="205" x2="180" y2="70" class="connection-line"/>
+                                <line x1="40" y1="205" x2="180" y2="115" class="connection-line"/>
+                                <line x1="40" y1="205" x2="180" y2="160" class="connection-line"/>
+                            </g>
+                                
+                            <!-- Connections - Hidden Layer to Output Layer -->
+                            <g class="connections">
+                                <line x1="220" y1="25" x2="360" y2="85" class="connection-line"/>
+                                <line x1="220" y1="25" x2="360" y2="145" class="connection-line"/>
+                                
+                                <line x1="220" y1="70" x2="360" y2="85" class="connection-line"/>
+                                <line x1="220" y1="70" x2="360" y2="145" class="connection-line"/>
+                                
+                                <line x1="220" y1="115" x2="360" y2="85" class="connection-line"/>
+                                <line x1="220" y1="115" x2="360" y2="145" class="connection-line"/>
+                                
+                                <line x1="220" y1="160" x2="360" y2="85" class="connection-line"/>
+                                <line x1="220" y1="160" x2="360" y2="145" class="connection-line"/>
+                            </g>
+
+                            <!-- Input Layer Nodes -->
+                            <g class="input-nodes">
+                                <circle cx="40" cy="30" r="12" class="node node-input"/>
+                                <text x="15" y="33" class="node-label">Age</text>
+                                
+                                <circle cx="40" cy="65" r="12" class="node node-input"/>
+                                <text x="15" y="68" class="node-label">Gender</text>
+                                
+                                <circle cx="40" cy="100" r="12" class="node node-input"/>
+                                <text x="10" y="103" class="node-label">BP</text>
+                                
+                                <circle cx="40" cy="135" r="12" class="node node-input"/>
+                                <text x="10" y="138" class="node-label">Heart</text>
+                                
+                                <circle cx="40" cy="170" r="12" class="node node-input"/>
+                                <text x="10" y="173" class="node-label">Glucose</text>
+                                
+                                <circle cx="40" cy="205" r="12" class="node node-input"/>
+                                <text x="15" y="208" class="node-label">BMI</text>
+                            </g>
+
+                            <!-- Hidden Layer Nodes -->
+                            <g class="hidden-nodes">
+                                <circle cx="200" cy="25" r="14" class="node node-hidden"/>
+                                <circle cx="200" cy="25" r="8" class="node-inner animate-brain-pulse"/>
+                                
+                                <circle cx="200" cy="70" r="14" class="node node-hidden"/>
+                                <circle cx="200" cy="70" r="8" class="node-inner animate-brain-pulse"/>
+                                
+                                <circle cx="200" cy="115" r="14" class="node node-hidden"/>
+                                <circle cx="200" cy="115" r="8" class="node-inner animate-brain-pulse"/>
+                                
+                                <circle cx="200" cy="160" r="14" class="node node-hidden"/>
+                                <circle cx="200" cy="160" r="8" class="node-inner animate-brain-pulse"/>
+                            </g>
+
+                            <!-- Output Layer Nodes -->
+                            <g class="output-nodes">
+                                <circle cx="360" cy="85" r="16" class="node node-output"/>
+                                <text x="360" y="89" class="node-label node-label-output">Risk</text>
+                                
+                                <circle cx="360" cy="145" r="16" class="node node-output-safe"/>
+                                <text x="360" y="149" class="node-label node-label-output">Safe</text>
+                            </g>
+
+                            <!-- Layer Labels -->
+                            <text x="40" y="235" class="layer-label">INPUT</text>
+                            <text x="200" y="235" class="layer-label">HIDDEN LAYERS</text>
+                            <text x="360" y="235" class="layer-label">OUTPUT</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Feature Cards -->
+                <div class="model-features">
+                    <div class="card model-card">
+                        <div class="model-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                            </svg>
+                        </div>
+                        <h3 class="model-card-title">Neural Network Architecture</h3>
+                        <p class="model-card-description">Advanced deep learning model with interconnected neurons processing patient data through multiple layers for accurate risk prediction.</p>
+                    </div>
+
+                    <div class="card model-card">
+                        <div class="model-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2a8 8 0 0 0-8 8c0 3.5 2.5 6 5 7.5L12 22l2.5-4.5c2.5-1.5 5-4 5-7.5a8 8 0 0 0-8-8z"/>
+                                <path d="M9 12l2 2 4-4"/>
+                            </svg>
+                        </div>
+                        <h3 class="model-card-title">Pattern Recognition</h3>
+                        <p class="model-card-description">The neural network learns complex patterns from medical data, identifying subtle correlations between risk factors and stroke outcomes.</p>
+                    </div>
+
+                    <div class="card model-card">
+                        <div class="model-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" x2="9" y1="1" y2="4"/><line x1="15" x2="15" y1="1" y2="4"/><line x1="9" x2="9" y1="20" y2="23"/><line x1="15" x2="15" y1="20" y2="23"/><line x1="20" x2="9" y1="9" y2="14"/><line x1="4" x2="15" y1="9" y2="14"/><line x1="20" x2="9" y1="15" y2="20"/><line x1="4" x2="15" y1="15" y2="20"/>
+                            </svg>
+                        </div>
+                        <h3 class="model-card-title">Real-time Inference</h3>
+                        <p class="model-card-description">Optimized for fast predictions. The model processes patient parameters through the neural network in milliseconds.</p>
+                    </div>
+
+                    <div class="card model-card">
+                        <div class="model-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/><line x1="12" x2="12" y1="3" y2="12"/>
+                            </svg>
+                        </div>
+                        <h3 class="model-card-title">Explainable AI</h3>
+                        <p class="model-card-description">Transparent decision-making with feature importance scores. Clinicians can see which factors most influenced the risk assessment.</p>
+                    </div>
+                </div>
+
+                <!-- Stats -->
+                <div class="model-stats">
+                    <div class="stat-card">
+                        <div class="stat-value gradient-text">95%</div>
+                        <div class="stat-label">Accuracy</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value gradient-text"><50ms</div>
+                        <div class="stat-label">Response Time</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value gradient-text">10+</div>
+                        <div class="stat-label">Risk Factors</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value gradient-text">24/7</div>
+                        <div class="stat-label">Availability</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-item">
+                    <div class="footer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="footer-title">Human-in-the-Loop</p>
+                        <p class="footer-description">Final clinical decision is always made by a qualified doctor. AI assists, never replaces.</p>
+                    </div>
+                </div>
+
+                <div class="footer-item">
+                    <div class="footer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="footer-title">Secure & Compliant</p>
+                        <p class="footer-description">Fully DPDP Act compliant with AES-256 encryption and role-based access control.</p>
+                    </div>
+                </div>
+
+                <div class="footer-item">
+                    <div class="footer-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a8 8 0 0 0-8 8c0 3.5 2.5 6 5 7.5L12 22l2.5-4.5c2.5-1.5 5-4 5-7.5a8 8 0 0 0-8-8z"/>
+                            <path d="M9 12l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="footer-title">Explainable AI</p>
+                        <p class="footer-description">Transparent predictions built on a Decision Tree model with full interpretability.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-logo">
+                    <div class="footer-logo-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a8 8 0 0 0-8 8c0 3.5 2.5 6 5 7.5L12 22l2.5-4.5c2.5-1.5 5-4 5-7.5a8 8 0 0 0-8-8z"/>
+                        </svg>
+                    </div>
+                    <span>StrokeCDSS</span>
+                </div>
+                <p class="footer-copyright">AI-Driven Brain Stroke Prediction Clinical Decision Support System</p>
+                <p class="footer-disclaimer">For clinical use only. Not a substitute for professional medical advice.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
